@@ -14,7 +14,7 @@ interface HeaderProps {
  * Header with the site name and a date picker
  */
 const Header: FunctionComponent<HeaderProps> = ({ siteName, selectedDates, onDateChange }) => {
-  const [popoverActive, setPopoverActive] = useState(true);
+  const [popoverActive, setPopoverActive] = useState(false);
 
   const togglePopoverActive = useCallback(
     () => setPopoverActive((popoverActive) => !popoverActive),
@@ -29,7 +29,7 @@ const Header: FunctionComponent<HeaderProps> = ({ siteName, selectedDates, onDat
 
 
   const today = new Date()
-  
+
   const [{month, year}, setDate] = useState({month: today.getMonth(), year: today.getFullYear()});
 
   const handleMonthChange = useCallback(
@@ -59,6 +59,7 @@ const Header: FunctionComponent<HeaderProps> = ({ siteName, selectedDates, onDat
             onMonthChange={handleMonthChange}
             selected={selectedDates}
             allowRange
+            disableDatesAfter={new Date()}
           />
         </FormLayout>
       </Popover>
