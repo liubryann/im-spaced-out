@@ -58,7 +58,6 @@ const Header: FunctionComponent<HeaderProps> = ({ siteName, selectedDates, onDat
             onChange={onDateChange}
             onMonthChange={handleMonthChange}
             selected={selectedDates}
-            allowRange
             disableDatesAfter={new Date()}
           />
         </FormLayout>
