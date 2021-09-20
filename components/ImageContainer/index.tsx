@@ -1,4 +1,6 @@
-import { FunctionComponent, useState, useEffect } from "react";
+import { FunctionComponent, useState, useCallback } from "react";
+
+import { Toast } from "@shopify/polaris";
 
 import ImageCard from '../ImageCard';
 
@@ -25,11 +27,18 @@ interface ImageContainerProps {
  * Container for the image cards
  */
 const ImageContainer: FunctionComponent<ImageContainerProps> = ({ images, likedImages, cacheLikedImages }) => {
+  const [toastActive, setToastActive] = useState(false);
+  const toggleActive = useCallback(() => setToastActive((active) => !active), [])
+
+  const clipboardToast = toastActive ? (
+    <Toast content="Link copied to clipboard." onDismiss={toggleActive} duration={3000} />
+  ) : null;
+
   const imageCards = images.reduce((acc: any, { date, title, url, media_type }: Image) => {
     if (media_type !== 'video') {
       acc.push(
         <div key={url} className={styles.cardHolder}>
-          <ImageCard title={title} date={date} imgSrc={url} likedImages={likedImages} setLikedImages={cacheLikedImages} />
+          <ImageCard title={title} date={date} imgSrc={url} likedImages={likedImages} setLikedImages={cacheLikedImages} toggleToastActive={toggleActive} />
         </div>
       )
     }
@@ -39,6 +48,7 @@ const ImageContainer: FunctionComponent<ImageContainerProps> = ({ images, likedI
   return (
     <div>
       {imageCards}
+      {clipboardToast}
     </div>
   )
 }

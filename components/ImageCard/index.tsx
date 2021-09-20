@@ -10,12 +10,13 @@ interface ImageCardProps {
   imgSrc: string,
   likedImages: any,
   setLikedImages: (likedImages: any) => void,
+  toggleToastActive: () => void,
 }
 
 /**
  * A card with a medium sized image
  */
-const ImageCard: FunctionComponent<ImageCardProps> = ({ title, date, imgSrc, likedImages, setLikedImages }) => {
+const ImageCard: FunctionComponent<ImageCardProps> = ({ title, date, imgSrc, likedImages, setLikedImages, toggleToastActive }) => {
   const [liked, setLiked] = useState(imgSrc in likedImages);
 
   return (
@@ -35,7 +36,11 @@ const ImageCard: FunctionComponent<ImageCardProps> = ({ title, date, imgSrc, lik
         },
       }}
       description={date}
-      popoverActions={[{content: 'Dismiss', onAction: () => {}}]}
+      popoverActions={[{content: 'Share', onAction: () => {
+        navigator.clipboard.writeText(imgSrc).then(() => {
+          toggleToastActive()
+        })
+      }}]}
       size="medium"
       portrait
     >
