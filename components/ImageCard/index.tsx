@@ -23,7 +23,7 @@ const ImageCard: FunctionComponent<ImageCardProps> = ({ title, date, imgSrc, lik
     <MediaCard
       title={title}
       primaryAction={{
-        content: liked ? 'UnLike' : 'Like' ,
+        content: liked ? 'Unlike' : 'Like' ,
         onAction: () => {
           if (imgSrc in likedImages) {
             delete likedImages[imgSrc]
