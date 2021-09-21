@@ -59,7 +59,8 @@ const Home: NextPage = () => {
       cachedDateRange.end = new Date(cachedDateRange.end)
       setSelectedDates(cachedDateRange)
     } else {
-      setSelectedDates(defaultDate);
+      const defaultDateCopy = {};
+      setSelectedDates(Object.assign(defaultDateCopy, defaultDate));
     }
   }, [])
 
