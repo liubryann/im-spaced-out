@@ -1,5 +1,7 @@
 import { FunctionComponent, useState, useCallback } from "react";
 
+import Image from 'next/image';
+
 import {  Heading, Button, Popover, FormLayout, DatePicker, Range } from '@shopify/polaris';
 
 import styles from './header.module.scss';
@@ -39,8 +41,8 @@ const Header: FunctionComponent<HeaderProps> = ({ siteName, selectedDates, onDat
 
   return (
     <div className={styles.headerContainer}>
-      <div>
-        <Heading element="h1">{ siteName }</Heading>
+      <div className={styles.title}>
+        <Image height={30} width={30} src="/images/earth.png" /><Heading element="h1">{ siteName }</Heading>
       </div>
       <div className={styles.datePicker}>
         <Popover

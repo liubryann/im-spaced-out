@@ -36,7 +36,7 @@ const ImageCard: FunctionComponent<ImageCardProps> = ({ title, date, imgSrc, lik
         },
       }}
       description={date}
-      popoverActions={[{content: 'Share', onAction: () => {
+      popoverActions={[{content: 'Copy Link', onAction: () => {
         navigator.clipboard.writeText(imgSrc).then(() => {
           toggleToastActive()
         })

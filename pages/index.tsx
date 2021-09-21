@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import { useState, useEffect, useRef } from 'react';
 
-import { Range, Spinner } from '@shopify/polaris';
+import { Range, Spinner, Frame } from '@shopify/polaris';
 
 import Container from '../components/Container';
 import Header from '../components/Header';
@@ -93,19 +93,21 @@ const Home: NextPage = () => {
   }, [selectedDates])
  
   return (
-    <Container>
-      <Header siteName="Spacestagram" selectedDates={selectedDates} onDateChange={onDateChange} />
+    <Frame>
+      <Container>
+          <Header siteName="Spacestagram" selectedDates={selectedDates} onDateChange={onDateChange} />
 
-      { loading ? (
-        <div className={styles.loadingContainer}>
-          <Spinner accessibilityLabel="Spinner" size="large" />
-        </div>
-      ) : (
-        <div className={styles.loadingContainer}>
-          <ImageContainer images={images} likedImages={likedImages} cacheLikedImages={cacheLikedImages} />
-        </div>
-      )}
-    </Container>
+          { loading ? (
+            <div className={styles.loadingContainer}>
+              <Spinner accessibilityLabel="Spinner" size="large" />
+            </div>
+          ) : (
+            <div className={styles.loadingContainer}>
+              <ImageContainer images={images} likedImages={likedImages} cacheLikedImages={cacheLikedImages} />
+            </div>
+          )}
+      </Container>
+    </Frame>
   )
 }
 

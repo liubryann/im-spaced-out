@@ -2,8 +2,6 @@ import { FunctionComponent, ReactNode } from 'react';
 
 import Head from 'next/head';
 
-import { Frame } from '@shopify/polaris';
-
 import styles from './container.module.scss';
 
 interface ContainerProps {
@@ -26,7 +24,7 @@ const Container: FunctionComponent<ContainerProps> = ({ children }) => {
         <meta name="og:title" content={SITE_TITLE} />
         <title>{SITE_TITLE}</title>
       </Head>
-      <main className={styles.main}><Frame>{ children }</Frame></main>
+      <main className={styles.main}>{ children }</main>
     </div>
   )
 }
